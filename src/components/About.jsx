@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom'
 import { Asterisk } from './Icons.jsx'
 
 const partners = ['OXFAM', 'DT Global', 'NAYBA', 'MOVE', 'Winsupply', 'FERGUSON']
 
-export default function About() {
+export default function About({ plain = false }) {
   return (
-    <section className="about" id="about">
+    <section className={`about ${plain ? 'about--plain' : ''}`} id="about">
       <div className="container">
         <div className="about__card">
           <ul className="partners">
@@ -26,8 +27,8 @@ export default function About() {
                 having a vessel line-up of over 640 container ships.
               </p>
               <div className="btn-row">
-                <a href="#contact" className="btn btn--primary">Get a Quote</a>
-                <a href="#services" className="btn btn--ghost-light">Learn More</a>
+                <Link to="/contact" className="btn btn--primary">Get a Quote</Link>
+                <Link to="/about" className="btn btn--ghost-light">Learn More</Link>
               </div>
             </div>
           </div>
