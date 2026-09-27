@@ -29,6 +29,12 @@ export default function Locations({ title = true }) {
             </div>
           )}
         </div>
+        {current && (
+          <div className="map__info" aria-live="polite">
+            <b>{current.city}</b>
+            <span>{current.addr}</span>
+          </div>
+        )}
       </div>
     </section>
   )

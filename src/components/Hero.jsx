@@ -7,15 +7,15 @@ export default function Hero() {
     <section className="hero">
       <div className="container hero__inner">
         <h1 className="hero__title">
-          Delivering Your Cargo
-          <span className="hero__accent"><span className="hero__globe"><Globe width={22} height={22} /></span>Worldwide</span>
+          <span className="hero__line">Delivering Your Cargo</span>
+          <span className="hero__accent hero__line"><span className="hero__globe"><Globe width={22} height={22} /></span>Worldwide</span>
         </h1>
         <form className="hero__search" onSubmit={(e) => { e.preventDefault(); navigate('/contact') }}>
           <label className="pill-input"><Pin /><input placeholder="Enter pickup location" /></label>
           <label className="pill-input"><Pin /><input placeholder="Enter destination location" /></label>
           <button className="icon-btn icon-btn--dark" aria-label="Get a quote for this route"><Search /></button>
         </form>
-        <div className="hero__visual">
+        <div className="hero__visual" data-parallax="-0.12">
           <svg className="hero__route" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
             <path d="M20 250 C 200 250, 180 60, 420 60 S 760 30, 980 20" />
             <circle cx="20" cy="250" r="6" />

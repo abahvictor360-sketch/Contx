@@ -12,7 +12,7 @@ export default function Containers() {
           <h2 className="section__title">Explore all containers<br />facilities</h2>
           <Link to="/containers" className="btn btn--outline">Explore All</Link>
         </div>
-        <div className="products">
+        <div className="products products--rail">
           {items.map((it, i) => (
             <article key={it.name} className="product">
               <img src={it.img} alt={it.name} />

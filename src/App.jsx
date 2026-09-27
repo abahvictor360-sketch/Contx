@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import Motion from './components/Motion.jsx'
 import Home from './pages/Home.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
 import TrackPage from './pages/TrackPage.jsx'
@@ -35,11 +36,14 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const { pathname } = useLocation()
   return (
     <>
       <ScrollToTop />
+      <Motion />
       <Navbar />
       <main>
+        <div className="page" key={pathname}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
@@ -50,6 +54,7 @@ export default function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </div>
       </main>
       <Footer />
     </>

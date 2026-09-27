@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import Logo from './Logo.jsx'
 
 const links = [
@@ -12,21 +12,31 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const close = () => setOpen(false)
+  const { pathname } = useLocation()
+
+  useEffect(() => setOpen(false), [pathname])
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', open)
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
   return (
-    <header className="nav" id="top">
+    <header className={`nav ${open ? 'nav--open' : ''}`} id="top">
       <div className="container nav__inner">
         <Logo />
-        <nav className={`nav__links ${open ? 'is-open' : ''}`}>
-          {links.map(([label, to]) => (
-            <NavLink key={to} to={to} onClick={close}>{label}</NavLink>
+        <nav className="nav__links" aria-label="Main">
+          {links.map(([label, to], i) => (
+            <NavLink key={to} to={to} style={{ '--i': i }}>{label}</NavLink>
           ))}
-          <Link to="/contact" className="btn btn--primary btn--sm nav__cta" onClick={close}>Contact us</Link>
+          <Link to="/contact" className="btn btn--primary btn--sm nav__cta" style={{ '--i': links.length }}>Contact us</Link>
         </nav>
-        <button className="nav__toggle" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)}>
+        <button className="nav__toggle" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)}>
           <span /><span /><span />
         </button>
       </div>
+      <div className="nav__backdrop" onClick={() => setOpen(false)} aria-hidden="true" />
     </header>
   )
 }

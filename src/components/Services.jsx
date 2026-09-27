@@ -7,7 +7,7 @@ export default function Services() {
     <section className="section" id="services">
       <div className="container">
         <h2 className="section__title center">Shipping &amp; Logistics<br />Services</h2>
-        <div className="services">
+        <div className="services rail">
           {services.map((s) => (
             <Link key={s.id} to={`/services#${s.id}`} className="service">
               <img src={s.img} alt={s.title} />

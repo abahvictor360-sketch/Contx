@@ -8,9 +8,13 @@ export default function About({ plain = false }) {
     <section className={`about ${plain ? 'about--plain' : ''}`} id="about">
       <div className="container">
         <div className="about__card">
-          <ul className="partners">
-            {partners.map((p, i) => <li key={p} className={`partner partner--${i}`}>{p}</li>)}
-          </ul>
+          <div className="partners">
+            <ul className="partners__track">
+              {[...partners, ...partners].map((p, i) => (
+                <li key={i} className={`partner partner--${i % partners.length} ${i >= partners.length ? 'partner--dup' : ''}`} aria-hidden={i >= partners.length || undefined}>{p}</li>
+              ))}
+            </ul>
+          </div>
           <div className="about__grid">
             <div className="about__media">
               <img src="/images/container-yard.jpg" alt="Stacked shipping containers" className="about__main" />
