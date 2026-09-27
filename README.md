@@ -1,5 +1,9 @@
 # CONTX
 
+![CONTX on desktop, tablet and mobile](docs/contx-showcase.png)
+
+Live: https://contx-theta.vercel.app
+
 Landing page for CONTX, a cargo and logistics company. Built with React and Vite.
 
 ```bash
